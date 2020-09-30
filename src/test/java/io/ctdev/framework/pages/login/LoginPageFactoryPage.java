@@ -6,6 +6,8 @@ import io.ctdev.framework.pages.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -47,8 +49,10 @@ public class LoginPageFactoryPage extends AbstractPage {
 
     public String getCurrentLoggedUserName() {
         navBarAccountElement.click();
-        WebElement userNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(goToUserProfileElement));
+        WebElement userNameElement = wait.until(ExpectedConditions.presenceOfElementLocated(goToUserProfileElement));
         return userNameElement.getAttribute("innerText").trim();
+
+
     }
 
     public LoginPageFactoryPage submitLoginForUser() {

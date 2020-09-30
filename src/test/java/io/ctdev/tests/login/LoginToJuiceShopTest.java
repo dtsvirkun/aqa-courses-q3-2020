@@ -6,15 +6,16 @@ import io.ctdev.framework.model.Customer;
 import io.ctdev.framework.pages.login.LoginFluentPage;
 import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.framework.pages.login.LoginPageFactoryPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.io.File;
+import java.nio.file.Files;
 
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
@@ -78,6 +79,7 @@ public class LoginToJuiceShopTest {
                 .clickOnLoginButton().enterUserEmail(customer.getEmail())
                 .enterUserPassword(customer.getPassword()).submitLoginForUser().getCurrentLoggedUserName();
 
+//        File file = ((TakesScreenshot)getDriver()).getScreenshotAs(OutputType.FILE);
         Assert.assertEquals(actualUserName, customer.getEmail(), "User name does not match ");
 
     }

@@ -14,4 +14,6 @@ public interface TestConfig extends Config {
     String baseUrl();
 
     String env();
+
+    boolean remote();
 }
