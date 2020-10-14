@@ -28,7 +28,7 @@ public class WebDriverSingleton {
             switch (TestConfig.cfg.browser()) {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
-                    driver.set(new EventFiringWebDriver(new FirefoxDriver()));
+                    driver.set(new FirefoxDriver());
                     break;
                 }
                 default: {
@@ -40,7 +40,7 @@ public class WebDriverSingleton {
                         }
                     } else {
                         WebDriverManager.chromedriver().setup();
-                        driver.set(new EventFiringWebDriver(new ChromeDriver()));
+                        driver.set(new ChromeDriver());
                     }
                 }
             }
