@@ -34,7 +34,12 @@ public class WebDriverSingleton {
                 default: {
                     if (TestConfig.cfg.remote()) {
                         try {
-                            driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome()));
+                            System.out.println((TestConfig.cfg.remote()));
+                            DesiredCapabilities capabilities = new DesiredCapabilities();
+                            capabilities.setCapability("browserName", "chrome");
+                            capabilities.setCapability("browserVersion", "85.0");
+                            capabilities.setCapability("enableVnc", true);
+                            driver.set(new RemoteWebDriver(new URL(TestConfig.cfg.remoteUrl()), capabilities));
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         }
@@ -54,7 +59,7 @@ public class WebDriverSingleton {
 
     public static void closeDriver() {
         if (driver.get() != null) {
-            driver.get().close();
+            driver.get().quit();
             driver.remove();
         }
     }
